@@ -14,5 +14,4 @@ RUN apt update
 RUN apt install -y ros-melodic-desktop-full
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 RUN apt install -y python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
-RUN apt install -y ros-melodic-fetch-gazebo-demo
 RUN echo "GAZEBO_MODEL_DATABASE_URI='http://models.gazebosim.org/'" >> ~/.bashrc
