@@ -13,6 +13,12 @@ For convenience, define a bunch of shell scripts for operating docker:
 1. Create a directory for storing the shell scripts:
     $ cd && mkdir Docker
 2. Create docker_exec.sh, docker_kill.sh, docker_run.sh
+    Usage: 
+    $ cd ~/Docker
+    $ ./docker_run.sh
+    $ ./docker_exec.sh
+    $ ./docker_kill.sh
+    
     docker_run.sh contains arguments to enable display and remote volume that points to catkin_ws for ease of use.
 
 $ sudo docker ps -a 
