@@ -13,5 +13,4 @@ For convenience, define a bunch of shell scripts for operating docker:
 1. Create a directory for storing the shell scripts:
     $ cd && mkdir Docker
 2. Create docker_exec.sh, docker_kill.sh, docker_run.sh
-    
-
+3. 
