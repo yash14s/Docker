@@ -1,0 +1,17 @@
+Install Docker on your system:
+    $ sudo apt install docker docker.io
+
+Create a file called Dockerfile which contains the specs of the docker image that you want to create. If you want to create a new docker image, its Dockerfile must be kept in a different directory.
+
+For MM, the Dockerfile is inside ~/Desktop/MM. To build the Dockerfile,
+    $ cd ~/Desktop/MM && sudo docker build -t fetch_sim .
+        here, we declare the name of the image to be fetch_sim 
+    $ sudo docker image list
+        check if image got built
+
+For convenience, define a bunch of shell scripts for operating docker:
+1. Create a directory for storing the shell scripts:
+    $ cd && mkdir Docker
+2. Create docker_exec.sh, docker_kill.sh, docker_run.sh
+    
+
