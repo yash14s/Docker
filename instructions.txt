@@ -1,5 +1,7 @@
 Install Docker on your system:
     $ sudo apt install docker docker.io
+    $ sudo usermod -aG docker $USER
+    Restart Terminal
 
 Create a file called Dockerfile which contains the specs of the docker image that you want to create. If you want to create a new docker image, its Dockerfile must be kept in a different directory.
 
@@ -19,7 +21,7 @@ For convenience, define a bunch of shell scripts for operating docker:
     $ ./docker_exec.sh
     $ ./docker_kill.sh
     
-    docker_run.sh contains arguments to enable display and volume linking that points to catkin_ws for ease of use.
+    docker_run.sh contains arguments to enable display and volume linking that points to a directory in host PC for ease of use.
 
 If we create a file in docker, it's locked in the host system
 $ chmod 757 filname
