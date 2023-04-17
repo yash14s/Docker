@@ -1,0 +1,75 @@
+INSTALLATION:
+Pre-req: Have docker installed on a Linux Machine, and give add docker to sudo group
+
+Following [1]
+1. Pull docker image
+	$ docker pull px4io/px4-dev-ros-melodic
+	
+2. Create a directory on your PC for volume linking
+	i. $ cd
+	ii. $ mkdir -p lidar_drone/src 
+
+3. Clone PX4 source code
+	i. $ cd ~/lidar_drone/src
+	ii. $ git clone https://github.com/PX4/PX4-Autopilot.git
+	
+4. Create docker_run.sh
+	i. $ cd ~/lidar_drone 
+	ii. Create docker_run.sh as per [2]
+
+5. Create docker_exec.sh
+	i. $ cd ~/lidar_drone
+	ii. Create docker_run.sh as per [3]
+	
+6. Create docker_kill.sh
+	i. $ cd ~/lidar_drone
+	ii. Create docker_kill.sh as per [4]
+
+7. Start a new container
+	In terminal (A):
+		i. $ cd ~/lidar_drone
+		ii. $ ./docker_run.sh
+	Check the container name 
+		iii. $ docker ps -a
+	The container name should be px4_container
+	
+	In terminal (B):
+		i. $ cd ~/lidar_drone
+		ii. $ ./docker_exec.sh
+	Now, we should be inside the container, at this path -> /root/lidar_drone
+	
+8. Build
+	i. $ cd ~/lidar_drone/src/PX4-Autopilot
+	ii. $ make px4_sitl_default gazebo-classic
+	A gazebo world with the iris drone should open. If not, close gazebo and re-run the command. You should see [commander] Ready for takeoff message
+	Takeoff-Land for a sanity check.
+	iii. commander takeoff
+	iv. commander land
+
+9. Configure ROS
+	i. $ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+	Create a catkin workspace for development
+	ii. $ mkdir -p ~/lidar_drone/catkin_ws/src
+	iii. $ cd ~/lidar_drone/catkin_ws && catkin_make
+	Some more config
+	iv. $ echo "source ~/lidar_drone/catkin_ws/devel/setup.bash" >> ~/.bashrc
+	
+
+
+USAGE:
+1. Start a container
+	In terminal (A):
+		i. $ cd ~/lidar_drone
+		ii. $ ./docker_run.sh
+	In terminal (B):
+		i. $ cd ~/lidar_drone
+		ii. $ ./docker_exec.sh
+
+2. 
+
+
+References:
+[1] https://docs.px4.io/main/en/test_and_ci/docker.html
+[2] github link to run.sh
+[3] github link to exec
+[4] github link to kill

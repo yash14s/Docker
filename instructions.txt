@@ -1,8 +1,12 @@
+INSTALLING DOCKER
 Install Docker on your system:
     $ sudo apt install docker docker.io
+    $ sudo groupadd docker
     $ sudo usermod -aG docker $USER
     Restart Terminal
 
+
+DOCKERFILES
 Create a file called Dockerfile which contains the specs of the docker image that you want to create. If you want to create a new docker image, its Dockerfile must be kept in a different directory.
 
 For MM, the Dockerfile is inside ~/Desktop/MM. To build the Dockerfile,
@@ -11,6 +15,12 @@ For MM, the Dockerfile is inside ~/Desktop/MM. To build the Dockerfile,
     $ sudo docker image list
         check if image got built
 
+
+
+WORKING WITH AN EXISTING IMAGE (docker pull)
+
+
+SHELL SCRIPTS
 For convenience, define a bunch of shell scripts for operating docker:
 1. Create a directory for storing the shell scripts:
     $ cd && mkdir Docker
@@ -23,21 +33,21 @@ For convenience, define a bunch of shell scripts for operating docker:
     
     docker_run.sh contains arguments to enable display and volume linking that points to a directory in host PC for ease of use.
 
+
+
+USEFUL COMMANDS
 If we create a file in docker, it's locked in the host system
 $ chmod 757 filname
-
-View docker status
 $ sudo docker ps -a
- 
 $ sudo docker image list
 $ sudo docker container prune
 $ sudo docker image prune
-
-Commit a docker container
-$ sudo docker commit 2bb47823458f fetch_sim:latest
-
 Remove a container after killing it. (Already added this in docker_kill.sh)
 $ sudo docker rm 2bb47823458f
+
+Commit changes to an image
+$ sudo docker commit 2bb47823458f fetch_sim:latest
+
 
 Push a container
 1. Login to Docker
