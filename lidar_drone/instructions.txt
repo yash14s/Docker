@@ -14,15 +14,15 @@ Following [1]
 	ii. $ git clone https://github.com/PX4/PX4-Autopilot.git
 	
 4. Create docker_run.sh
-	i. $ cd ~/lidar_drone 
+	i. $ cd ~/Docker/lidar_drone 
 	ii. Create docker_run.sh as per [2]
 
 5. Create docker_exec.sh
-	i. $ cd ~/lidar_drone
+	i. $ cd ~/Docker/lidar_drone
 	ii. Create docker_run.sh as per [3]
 	
 6. Create docker_kill.sh
-	i. $ cd ~/lidar_drone
+	i. $ cd ~/Docker/lidar_drone
 	ii. Create docker_kill.sh as per [4]
 
 7. Start a new container
@@ -46,26 +46,53 @@ Following [1]
 	iii. commander takeoff
 	iv. commander land
 
-9. Configure ROS
+9. Configure ROS and MAVROS [6]
 	i. $ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 	Create a catkin workspace for development
 	ii. $ mkdir -p ~/lidar_drone/catkin_ws/src
 	iii. $ cd ~/lidar_drone/catkin_ws && catkin_make
-	Some more config
 	iv. $ echo "source ~/lidar_drone/catkin_ws/devel/setup.bash" >> ~/.bashrc
+	For ROS wrappers with Gazebo. This allows additional sensors that we add later inside gazebo to publish data on ROS.
+	v. $ echo "px4_dir=/root/lidar_drone/src/PX4-Autopilot" >> ~/.bashrc
+	vi. $ echo "source $px4_dir/Tools/simulation/gazebo-classic/setup_gazebo.bash $px4_dir $px4_dir/build/px4_sitl_default" >> ~/.bashrc
+	vii. $ echo "export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$px4_dir" >> ~/.bashrc
+	viii. $ echo "export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$px4_dir/Tools/simulation/gazebo-classic/sitl_gazebo-classic" >> ~/.bashrc
+	Refer [7] for additional bashrc for adding models from our ROS package.
+	ix. $ source ~/.bashrc
+	Sanity check
+	x. Close any running gazebo or PX4 instances
+	xi. $ roslaunch px4 posix_sitl.launch
+	This should open up a Gazebo with PX4 and MAVROS.
 	
 
 
 USAGE:
 1. Start a container
 	In terminal (A):
-		i. $ cd ~/lidar_drone
+		i. $ cd ~/Docker/lidar_drone
 		ii. $ ./docker_run.sh
 	In terminal (B):
-		i. $ cd ~/lidar_drone
+		i. $ cd ~/Docker/lidar_drone
 		ii. $ ./docker_exec.sh
 
-2. 
+2. Run simulation. (Refer [5] for adding worlds, customizations)
+
+	Method 1: 
+	i. $ cd ~/lidar_drone/src/PX4-Autopilot
+	ii. $ make px4_sitl_default gazebo-classic
+	iii. $ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
+	
+	Method 2:
+	i. $ roslaunch px4 posix_sitl.launch
+	
+	Simple takeoff land
+	i. commander takeoff
+	ii. commander land
+	
+	
+
+
+
 
 
 References:
@@ -73,3 +100,10 @@ References:
 [2] github link to run.sh
 [3] github link to exec
 [4] github link to kill
+[5] https://docs.px4.io/main/en/sim_gazebo_classic/
+[6] https://docs.px4.io/main/en/simulation/ros_interface.html
+[7] https://github.com/vanquish630/pheonix
+[8] https://docs.px4.io/main/en/sim_gazebo_classic/multi_vehicle_simulation_gazebo.html
+[9] https://docs.px4.io/main/en/ros/ros1.html
+
+
