@@ -63,7 +63,11 @@ Following [1]
 	x. Close any running gazebo or PX4 instances
 	xi. $ roslaunch px4 posix_sitl.launch
 	This should open up a Gazebo with PX4 and MAVROS.
+	xii. $ pip3 install pyyaml
+	xiii. $ pip3 install rospkg
 	
+10. Create a ROS package [10]
+
 
 
 USAGE:
@@ -83,16 +87,13 @@ USAGE:
 	iii. $ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 	
 	Method 2:
-	i. $ roslaunch px4 posix_sitl.launch
+	i. $ roslaunch px4 mavros_posix_sitl.launch
 	
 	Simple takeoff land
 	i. commander takeoff
 	ii. commander land
 	
 	
-
-
-
 
 
 References:
@@ -105,5 +106,6 @@ References:
 [7] https://github.com/vanquish630/pheonix
 [8] https://docs.px4.io/main/en/sim_gazebo_classic/multi_vehicle_simulation_gazebo.html
 [9] https://docs.px4.io/main/en/ros/ros1.html
+[10] https://github.com/yash14s/ROS/blob/main/Notes/ROS%20package.txt 
 
 
