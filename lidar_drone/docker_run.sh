@@ -8,4 +8,4 @@ docker run -d -it --privileged --rm --name px4_container \
 	--env="QT_X11_NO_MITSHM=1" \
 	-p 14570:14570/udp \
 	-w="/root/lidar_drone/" \
-	yash14sgatech/px4-dev-ros-melodic:v3 bash
+	yash14sgatech/px4-dev-ros-melodic:v4 bash
