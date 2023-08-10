@@ -68,7 +68,7 @@ Following [1]
 	
 10. Create a ROS package [10]
 
-
+11. Additional VS Code configuration - install C/C++ and ROS extensions.
 
 USAGE:
 1. Start a container
